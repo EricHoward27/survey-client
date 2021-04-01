@@ -17,6 +17,8 @@ import SurveyCreate from './components/routes/SurveyCreate'
 import SurveyShow from './components/routes/SurveyShow'
 import SurveyUpdate from './components/routes/SurveyUpdate'
 import SurveyIndex from './components/routes/SurveyIndex'
+// import team crud components
+import TeamCreate from './components/TeamCreate/TeamCreate.js'
 
 class App extends Component {
   constructor (props) {
@@ -94,6 +96,10 @@ class App extends Component {
           {/* Show ALL surveys */}
           <AuthenticatedRoute user={user} exact path='/surveys' render={() => (
             <SurveyIndex msgAlert={this.msgAlert} user={user} />
+          )} />
+          {/* create a team */}
+          <AuthenticatedRoute user={user} path='/create-team' render={() => (
+            <TeamCreate msgAlert={this.msgAlert} user={user} />
           )} />
         </main>
       </Fragment>
