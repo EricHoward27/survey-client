@@ -57,6 +57,7 @@ class TeamShow extends Component {
   }
   render () {
     const { team, deleted } = this.state
+    // const { user } = this.props
     // console.log('response data is: ', survey.responses)
     // if we don't have survey
     if (!team) {
@@ -68,18 +69,30 @@ class TeamShow extends Component {
     }
     if (deleted) {
       // redirect to the homepage
-      return <Redirect to="/" />
+      return <Redirect to="/teams" />
     }
+    // if (!user) {
+    //   return (
+    //     <div>
+    //       <h3>Team:{team.name}</h3>
+    //       <h4>City: {team.city}</h4>
+    //     </div>
+    //   )
+    // }
     return (
       <div>
         <h3>Team:{team.name}</h3>
         <h4>City: {team.city}</h4>
-        <Button onClick={this.handleDelete}>Delete Team</Button>
-        <Link to={`/teams/${team._id}/edit`}>
-          <Button renderAs='button'>
+        {(this.props.user._id === team.owner) ? (
+          <div>
+            <Button onClick={this.handleDelete}>Delete Team</Button>
+            <Link to={`/teams/${team._id}/edit`}>
+              <Button renderAs='button'>
             Edit Team
-          </Button>
-        </Link>
+              </Button>
+            </Link>
+          </div>
+        ) : ''}
       </div>
     )
   }
